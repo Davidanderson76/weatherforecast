@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    //getting current day using moment js
+    const currentDate = moment();
+    console.log("Today's date is: " + currentDate.format('MM/DD/YYYY'));
+
     $("#submitWeather").click(function(){
         var key = "&appid=774645a1338c2b284cd26096d423753e";
         var city = $( "#city" ).val();
