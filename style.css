@@ -1,37 +1,54 @@
-body {
-    background-color: lightgray;
+
+
+.item1, .form-group { 
+    grid-area: header;
+    color: slateblue;
+ }
+
+
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item5 { 
+  grid-area: 
+  footer;
+  color: slateblue;
+ }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 5px;
+  background-color: lightslategray;
+  padding: 5px;
 }
 
-.jumbotron-fluid {
-    background-color: salmon;
+.grid-container > div {
+  background-color: salmon;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
 }
 
-.display-4, .lead, .form-group, .btn {
-    color: mediumslateblue;
+p {
+    font-size: medium;
 }
-
-form {
-    width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-.box{
-    background-color: salmon;
-    margin: 5px auto;
-    width: 300px;
-    height: 20px;
-    float: left;
-  }
 
 .button {
-    background-color: black;
-}
+    background-color: #000000;
+    border: none;
+    color: blueviolet;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
-.card {
-    background-color: salmon;
-    width: 300px;
-    height: 200px;
-    float: left;  
-}
+  .card {
+      background-color: salmon;
+  }
