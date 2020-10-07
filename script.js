@@ -1,15 +1,23 @@
 $(document).ready(function(){
 
     $("#submitWeather").click(function(){
-
-        var city = $("#city").val();
-        var queryUrl = 'https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric' + '&appid=a0230666122f5a62a46562b7d71a9b25';
+        var key = "&appid=774645a1338c2b284cd26096d423753e";
+        var city = $( "#city" ).val();
+        var url = "https://api.openweathermap.org/data/2.5/forecast";
 
         $.ajax({
-            url: queryUrl,
-            method: "GET",
-        }).then (function(response){
-            console.log(response);
-        })
-    });
-}); 
+        url: url, //API Call
+        dataType: "json",
+        type: "GET",
+        data: {
+            q: city,
+            appid: key,
+            units: "metric",
+            cnt: "10"
+        },
+        success: function(data) {
+            console.log('Received data:', data)
+            
+            $("#showWeatherForcast").html;
+
+}})})});
