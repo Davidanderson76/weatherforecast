@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    //getting current day using moment js
+    const currentDate = moment();
+    console.log("Today's date is: " + currentDate.format('MM/DD/YYYY'));
+
     //on click activates the function to enter the input into the search
     $("#search-button").on("click",function() {
         var searchValue = $("#search-value").val();
@@ -20,6 +24,8 @@ $(document).ready(function(){
         //VARIABLES
         var key = "&appid=774645a1338c2b284cd26096d423753e";
         var url = "https://api.openweathermap.org/data/2.5/forecast";
+        var searchValue = $("#search-value").val();
+        $("#search-value").val("");
 
         //API Call
 
@@ -92,6 +98,8 @@ $(document).ready(function(){
         });
     }
 
+    //function to obtain the uv index
+
     function getUVIndex(lat, lon) {
         $.ajax({
             type: "GET",
@@ -100,8 +108,29 @@ $(document).ready(function(){
             success: function(data) {
               var uv = $("<p>").text("UV Index: ");
               var btn = $("<span>").addClass("btn btn-sm").text(data.value);
+
+              if (data.value < 3) {
+                  btn.addClass("btn-success");
+              }
+              else if (data.value < 7) {
+                  btn.addClass("btn-warning");
+              }
+              else {
+                  btn.addClass("btn-danger");
+              }
+              $("#today .card-body").append(uv.append(btn));
+            }
+        });
     }
 
+//search history
+var history = JSON.parse(window.localStorage.getItem("history"))  || [];
+if (history.length > 0) {
+    searchWeather(history[history.length-1]);
+}
+    for (var i = 0; i < history.length; i++) {
+        makeRow(history[i]);
+    }
 
 
 
@@ -121,23 +150,4 @@ $(document).ready(function(){
     console.log("Today's date is: " + currentDate.format('MM/DD/YYYY'));
 
     
-        var key = "&appid=774645a1338c2b284cd26096d423753e";
-        var city = $( "#city" ).val();
-        var url = "https://api.openweathermap.org/data/2.5/forecast";
-
-        $.ajax({
-        url: url, //API Call
-        dataType: "json",
-        type: "GET",
-        data: {
-            q: city,
-            appid: key,
-            units: "metric",
-            cnt: "10"
-        },
-        success: function(data) {
-            console.log('Received data:', data)
-            
-            $("#showWeatherForcast").html;
-
-}})})});
+})
