@@ -20,7 +20,7 @@ $(document).ready(function() {
     function searchWeather(searchValue) {
       $.ajax({
         type: "GET",
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=774645a1338c2b284cd26096d423753e",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial" + "&appid=774645a1338c2b284cd26096d423753e",
         dataType: "json",
         success: function(data) {
           // create history link for this search
@@ -115,7 +115,6 @@ $(document).ready(function() {
       });
     }
   
-    // get current history, if any
     var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
     if (history.length > 0) {
